@@ -15,7 +15,7 @@ import { PessoaService } from './pessoa.service';
 import { CriarPessoa } from './pessoa.dto';
 import { Response as ExpressResponse } from 'express';
 
-@Controller('/pessoa')
+@Controller('/pessoas')
 export class PessoaController {
   constructor(private readonly pessoaService: PessoaService) {}
 
@@ -27,7 +27,7 @@ export class PessoaController {
   ) {
     const { id } = await this.pessoaService.create(payload);
     response.header('Location', `/pessoas/${id}`);
-    return { id };
+    response.json({ id });
   }
 
   @Get('/:id')
