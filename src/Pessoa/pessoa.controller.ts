@@ -19,6 +19,12 @@ import { Response as ExpressResponse } from 'express';
 export class PessoaController {
   constructor(private readonly pessoaService: PessoaService) {}
 
+  @Get('/contagem-pessoas')
+  @HttpCode(HttpStatus.OK)
+  async count() {
+    return this.pessoaService.count();
+  }
+
   @Post('/')
   @HttpCode(HttpStatus.CREATED)
   async create(
@@ -47,11 +53,5 @@ export class PessoaController {
       throw new BadRequestException('t eh obrigatorio');
     }
     return this.pessoaService.search(termo);
-  }
-
-  @Get('/contagem-pessoas')
-  @HttpCode(HttpStatus.OK)
-  async count() {
-    return this.pessoaService.count();
   }
 }
