@@ -7,6 +7,8 @@ async function bootstrap() {
   app.useGlobalPipes(
     new ValidationPipe({
       errorHttpStatusCode: HttpStatus.BAD_REQUEST,
+      forbidNonWhitelisted: true,
+      skipNullProperties: true,
     }),
   );
   await app.listen(3000);
